@@ -1,0 +1,22 @@
+\documentclass{article}
+
+\begin{document}
+\begin{center} \Large Room Draw Database Schema \end{center}
+
+\noindent Student(\underline{sid: integer}, roomDrawNum: integer, fid: integer, isExtra: boolean) \\
+
+\noindent Room(\underline{dormName: string, roomNumber: string}, isAvailable: boolean, capacity: integer, occupancy: integer, suiteNumber: string)\\
+
+\noindent Friendship(\underline{fid: integer}, avgNum: real) \\
+
+\noindent Suite(\underline{dormName: string, suiteNumber: string}, isAvailable: boolean) \\
+
+\noindent Proxy(\underline{sid: integer, proxyid: integer})\\
+
+\noindent Wants(\underline{sid: integer, dormName: string, roomNum: string}, prefIdx: integer) \\
+
+\noindent Request(\underline{fid: integer, dormName: string, suiteNum: string}, prefIdx: integer) \\
+
+\noindent Occupy(\underline{sid: integer, dormName: string, roomNum: string}, from: timestamp, to: timestamp) \\
+
+\end{document}
