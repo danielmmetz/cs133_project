@@ -1,0 +1,25 @@
+\documentclass{article}
+
+\begin{document}
+
+\noindent Below are the key aspects of the business logic that are integral to the functionality of
+the RoomDraw application.  
+
+\begin{itemize}
+\item A Friendship must have more than three members.
+\item A student reference by the leaderID field in a Friendship is a proxy for the
+  six students referenced by $sid2 \cdots sid6$
+\item In the Occupy table at least on of inFall and inSpring must be true.
+\item If a student has requested a room in a collection, that student must request every
+  room in that collection.
+\item Queries for Suites are a search for Collections with non-NULL suiteNum attributes. The other
+  collections have $k$ rooms and $k$ students, where the student with the highest room draw number
+  ``pulls up'' the remaining $k-1$ students.
+\item For Frienships, the roomDrawNumber is calculated on the creation of the friendship.  It is
+  the average of the numbers of all of the students.  The student designated by leaderID is a proxy
+  for the remaining students represented by $sid2 \cdots sid6$
+\item In a Student's preferences list, the rooms selected by the friendship automatically have higher
+  rank than the rest.
+\end{itemize}
+
+\end{document}
