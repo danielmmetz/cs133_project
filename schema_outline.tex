@@ -3,20 +3,20 @@
 \begin{document}
 \begin{center} \Large Room Draw Database Schema \end{center}
 
-\noindent Student(\underline{sid: integer}, roomDrawNum: integer, fid: integer, isExtra: boolean) \\
+\noindent Student(\underline{sid: integer}, roomDrawNum: integer) \\
 
-\noindent Room(\underline{dormName: string, roomNumber: string}, isAvailable: boolean, capacity: integer, occupancy: integer, suiteNumber: string)\\
+\noindent Room(\underline{dormName: string, roomNumber: string}, capacity: integer, collectionID: integer) \\
 
-\noindent Friendship(\underline{fid: integer}, avgNum: real) \\
+\noindent Friendship(\underline{fid: integer}, avgNum: real, leaderID: integer, sid2: integer, sid3: integer, sid4: integer, sid5:integer, sid6:integer) \\
 
-\noindent Suite(\underline{dormName: string, suiteNumber: string}, isAvailable: boolean) \\
+\noindent Collection(\underline{cid: integer}, dormName: string, suiteNum: integer)
 
 \noindent Proxy(\underline{sid: integer, proxyid: integer})\\
 
-\noindent Wants(\underline{sid: integer, dormName: string, roomNum: string}, prefIdx: integer) \\
+\noindent Request\_S(\underline{sid: integer, cid: integer}, prefIdx: integer) \\
 
-\noindent Request(\underline{fid: integer, dormName: string, suiteNum: string}, prefIdx: integer) \\
+\noindent Request\_R(\underline{sid: integer, rank: integer}, dormName: string, roomNum: string, roommateID1: integer, roommateID2: integer) \\
 
-\noindent Occupy(\underline{sid: integer, dormName: string, roomNum: string}, from: timestamp, to: timestamp) \\
+\noindent Occupy(\underline{sid: integer, dormName: string, roomNum: string}, academicYear: integer, inFall: boolean, inSpring: boolean) \\
 
 \end{document}
