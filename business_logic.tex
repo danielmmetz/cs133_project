@@ -2,24 +2,18 @@
 
 \begin{document}
 
-\noindent Below are the key aspects of the business logic that are integral to the functionality of
-the RoomDraw application.  
+\noindent Below are the key aspects of the business logic that are integral to the functionality of the RoomDraw application.
 
 \begin{itemize}
-\item A Friendship must have more than three members.
-\item A student reference by the leaderID field in a Friendship is a proxy for the
-  six students referenced by $sid2 \cdots sid6$
-\item In the Occupy table at least on of inFall and inSpring must be true.
-\item If a student has requested a room in a collection, that student must request every
-  room in that collection.
-\item Queries for Suites are a search for Collections with non-NULL suiteNum attributes. The other
-  collections have $k$ rooms and $k$ students, where the student with the highest room draw number
-  ``pulls up'' the remaining $k-1$ students.
-\item For Frienships, the roomDrawNumber is calculated on the creation of the friendship.  It is
-  the average of the numbers of all of the students.  The student designated by leaderID is a proxy
-  for the remaining students represented by $sid2 \cdots sid6$
-\item In a Student's preferences list, the rooms selected by the friendship automatically have higher
-  rank than the rest.
+\item A student who is a representative of a group makes the request on behalf of the group. The representative of a group is by default the student in the group with the highest $drawNum$.
+
+\item On creation of a group, the $G.drawNum$ is calculated. The manner by which it is calculated depends on the type of a group.  If the group $G$ is to draw into a Friendship suite with students $S_1 \cdots S_r$, then $G.drawNum$ is the arithmetic mean of $S_1.drawNum \cdots S_r.drawNum$. Otherwise, $G.drawNum$ is $S_i.drawNum$ where $S_i$ is a student such that $S_i > S_j$ for all $j \in [r]$.
+
+\item For a tuple $o \in Occupy$, $o.inFall$ is true or $o.inSpring$ is true.
+
+\item Queries for Suites are a search for Collections with non-NULL $suiteNum$ attributes.
+
+\item In a Student's preferences list, the rooms selected by the friendship automatically have higher $absrank$ than the rest.
 \end{itemize}
 
 \end{document}
