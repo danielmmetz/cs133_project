@@ -8,7 +8,7 @@ The result of the translation of the ER diagram to the schema is presented in th
 \begin{quote}
   \noindent Student(\underline{\textit{sid}: \texttt{integer}}, \textit{drawNum}: \texttt{integer}, \textit{name}: \texttt{string}, \\ $\mbox{}$ \qquad \quad  \textit{gradYear}: \texttt{integer}) \\
   \noindent Member(\underline{\textit{sid}: \texttt{integer}, \textit{gid}: \texttt{integer}}) \\
-  \noindent Group(\underline{\textit{gid}: \texttt{integer}, \textit{drawNum}: \texttt{integer}, \textit{repid}: \texttt{integer}})\\
+  \noindent Group(\underline{\textit{gid}: \texttt{integer}}, \textit{drawNum}: \texttt{integer}, \textit{repid}: \texttt{integer}, \textit{forSuite}: \texttt{boolean})\\
 \end{quote}
 
 The above schema mostly sticks to the obvious translation.  However we have key constraint and total participation constraint on the $Representative$ relationship between $Student$ and $Group$. Since every entity in $Group$ must participate in the $Representative$ relationship exactly once, $repid$ is a foreign key to the $Student$ table in each $Group$ tuple. The above schema is in Third Normal Form.
