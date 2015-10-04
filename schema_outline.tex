@@ -1,22 +1,16 @@
 \documentclass{article}
 
+
 \begin{document}
-\begin{center} \Large Room Draw Database Schema \end{center}
 
-\noindent Student(\underline{sid: integer}, roomDrawNum: integer) \\
+\noindent Student(\underline{\textit{sid}: \texttt{integer}}, \textit{drawNum}: \texttt{integer}) \\
+\noindent Member(\underline{\textit{sid}: \texttt{integer}, \textit{gid}: \texttt{integer}}) \\
+\noindent Group(\underline{\textit{gid}: \texttt{integer}, \textit{drawNum}: \texttt{integer}, \textit{repid}: \texttt{integer}})\\
 
-\noindent Room(\underline{dormName: string, roomNumber: string}, capacity: integer, collectionID: integer) \\
+\noindent Room(\underline{\textit{dormName}: \texttt{string}, \textit{roomNumber}: \texttt{string}}, \textit{capacity}: \texttt{integer}, \textit{cid}: \texttt{integer}) \\
+\noindent Collection(\underline{\textit{cid}: \texttt{integer}}, \textit{suiteNum}: \texttt{integer})\\
 
-\noindent Friendship(\underline{fid: integer}, avgNum: real, leaderID: integer, sid2: integer, sid3: integer, sid4: integer, sid5:integer, sid6:integer) \\
-
-\noindent Collection(\underline{cid: integer}, dormName: string, suiteNum: integer)
-
-\noindent Proxy(\underline{sid: integer, proxyid: integer})\\
-
-\noindent Request\_S(\underline{sid: integer, cid: integer}, prefIdx: integer) \\
-
-\noindent Request\_R(\underline{sid: integer, rank: integer}, dormName: string, roomNum: string, roommateID1: integer, roommateID2: integer) \\
-
-\noindent Occupy(\underline{sid: integer, dormName: string, roomNum: string}, academicYear: integer, inFall: boolean, inSpring: boolean) \\
+\noindent Request(\underline{\textit{gid}: \texttt{integer}, \textit{cid}: \texttt{integer}}, \textit{absRank}: \texttt{real}) \\
+\noindent Occupy(\underline{\textit{sid}: \texttt{integer}, \textit{dormName}: string, \textit{roomNum}: \texttt{string}}, \textit{academicYear}: \texttt{integer}, \textit{inFall}: \texttt{boolean}, \textit{inSpring}: \texttt{boolean}) \\
 
 \end{document}
