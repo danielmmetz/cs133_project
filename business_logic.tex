@@ -15,7 +15,7 @@
 
 \item On the draw page, Collections are added to a students preferences list.  then, on the preferences page, when they press \textit{Submit}, the corresponding requests are saved to the database.
 
-\item The number of students in any group must be between 1 and 6 (inclusive).
+\item The number of students in any group must be between 1 and 6 (inclusive).  If that group is also a suite, it must have at least 3. A student can be in any number of groups, provided that only one is a suite.
 
 \item The attribute $absRank$ in the $Request$ relation is a \texttt{real} to facilitate the ordering of requests.  We set the maxmium number of requests to be 100, then the first two decimal places specify the student's ordered preference. In other words, if a representative student $s$ specifies an ordering $1,2,\cdots, n$, then the requests $r_1,r_2, \cdots, r_n \in Request$ are created such that \[r_i.absRank = s.drawNum + i/100.0\]
 
