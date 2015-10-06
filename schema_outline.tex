@@ -8,7 +8,7 @@ The result of the translation of the ER diagram to the schema is presented in th
 \begin{quote}
   \noindent Student(\underline{\textit{sid}: \texttt{integer}}, \textit{drawNum}: \texttt{integer}, \textit{name}: \texttt{string}, \\ $\mbox{}$ \qquad \quad  \textit{gradYear}: \texttt{integer}) \\
   \noindent Member(\underline{\textit{sid}: \texttt{integer}, \textit{gid}: \texttt{integer}}) \\
-  \noindent Group(\underline{\textit{gid}: \texttt{integer}}, \textit{drawNum}: \texttt{integer}, \textit{repid}: \texttt{integer}, \textit{forSuite}: \texttt{boolean})\\
+  \noindent Draw\_Group(\underline{\textit{gid}: \texttt{integer}}, \textit{drawNum}: \texttt{integer}, \textit{repid}: \texttt{integer}, \\ $\mbox{}$ \qquad \quad \textit{forSuite}: \texttt{boolean})\\
 \end{quote}
 
 The above schema mostly sticks to the obvious translation.  However we have key constraint and total participation constraint on the $Representative$ relationship between $Student$ and $Group$. Since every entity in $Group$ must participate in the $Representative$ relationship exactly once, $repid$ is a foreign key to the $Student$ table in each $Group$ tuple. The above schema is in Third Normal Form.
@@ -16,15 +16,15 @@ The above schema mostly sticks to the obvious translation.  However we have key 
 Now, consider a parallel set of entity sets $Room$ and $Collection$.
 
 \begin{quote}
-  \noindent Room(\underline{\textit{dormName}: \texttt{string}, \textit{roomNumber}: \texttt{string}}, \textit{capacity}: \texttt{integer}, \\ $\mbox{}$ \qquad \quad \textit{cid}: \texttt{integer}) \\
-  \noindent Collection(\underline{\textit{cid}: \texttt{integer}}, \textit{suiteNum}: \texttt{integer})\\
+  \noindent Room(\underline{\textit{dormName}: \texttt{string}, \textit{roomNumber}: \texttt{string}}, \textit{capacity}: \texttt{integer}, $\mbox{}$ \qquad \quad \textit{cid}: \texttt{integer})\\
+  \noindent Collection(\underline{\textit{cid}: \texttt{integer}}, \textit{suiteNum}: \texttt{integer})
 \end{quote}
 
 Here there are total participation and key constraints on $Room$ with respect to the $In\_A$ relationship.  Since each and every entity in $Room$ is in $Collection$ exactly once, the $cid$, or collection ID, can be an attribute in $Room$. It is a foreign key to the $Collection$ table. Here, Third Normal Form is maintained.
 
 Now consider the tables representing the $Request$ and $Occupy$ relationships. Since there are no constraints in the ER Diagram, these are straightforward translations.
 \begin{quote}
-  \noindent Request(\underline{\textit{gid}: \texttt{integer}, \textit{cid}: \texttt{integer}}, \textit{absRank}: \texttt{real}) \\
+  \noindent Request(\underline{\textit{gid}: \texttt{integer}, \textit{cid}: \texttt{integer}}, \textit{rankAbsolute}: \texttt{real}) \\
   \noindent Occupy(\underline{\textit{sid}: \texttt{integer}, \textit{dormName}: string, \textit{roomNum}: \texttt{string}}, \\ $\mbox{}$ \qquad \quad \textit{academicYear}: \texttt{integer}, \textit{inFall}: \texttt{boolean}, \textit{inSpring}: \texttt{boolean}) \\
 \end{quote}
 
