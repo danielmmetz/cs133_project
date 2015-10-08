@@ -18,11 +18,11 @@ relationships.
         \ul{\emph{gid}: \texttt{integer}},
         \emph{drawNum}: \texttt{integer},
         \emph{repid}: \texttt{integer},
-        \emph{forSuite}: \texttt{boolean}
+        \emph{forSuite}: \texttt{boolean})
 \end{description}
 
-The above schema mostly sticks to the obvious translation.  However we have key
-constraint and total participation constraint on the \emph{Representative}
+The above schema mostly sticks to the obvious translation.  However, we have key
+and total participation constraints on the \emph{Representative}
 relationship between \emph{Student} and \emph{Group}. Since every entity in
 \emph {Group} must participate in the \emph{Representative} relationship exactly
 once, \emph{repid} is a foreign key to the \emph{Student} table in each

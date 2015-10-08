@@ -27,16 +27,15 @@ If that group is also a suite, it must have at least 3. A student can be in any
 number of groups, provided that only one is a suite.
 
 \item The attribute \(absRank\) in the \(Request\) relation is a \texttt{real} to
-facilitate the ordering of requests.  We set the maximum number of requests to
+facilitate the ordering of preferences.  We set the maximum number of preferences to
 be 1000, then the first three decimal places specify the student's ordered
 preference. In other words, if a representative student \(s\) specifies an
-ordering \(1,2,\ldots, n\), then the requests \(r_1,r_2, \ldots, r_n \in
+ordering \(1,2,\ldots, n\), then the preferences \(r_1,r_2, \ldots, r_n \in
 Request\) are created such that \[r_i.absRank = s.drawNum + i/1000.0\]
 
 \item The minimum \(drawNum\) for students is \num{10000}. This allows for
 friendship suites to be given priority. On committing the requests \(r_1\ldots
 r_n\), if \(r_i.cid\) corresponds to a friendship suite, \(r_i.drawNum\) is
-automatically reduced by this minimum \(drawNum\), \num{10000}. This gives
-requests for a friendship suite preferred \(absRank\) values.
+automatically reduced by this minimum \(drawNum\), \num{10000}. This places a friendship suite lower \(absRank\) values.
 \end{itemize}
 
