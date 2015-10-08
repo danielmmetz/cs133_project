@@ -4,14 +4,16 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\usepackage{amsmath,amssymb,amsthm,commath,booktabs,cleveref,graphicx,outlines}
-\usepackage{lmodern,microtype,soul}
+\usepackage{graphicx,float}
+\usepackage{amsmath,amssymb,amsthm,commath,cleveref,outlines}
+\usepackage{booktabs,multicol}
+\usepackage{lmodern,microtype,soul,siunitx}
 
 \usepackage{todonotes}
 \newcommand\todoin[2][]{\todo[inline, caption={2do}, #1]{ %inline todo box
   \begin{minipage}{\textwidth-4pt}#2\end{minipage}}}
 
-\title{CS133 Milestone 1}
+\title{CS133 Milestone 2}
 \author{Daniel Metz, Eric Campbell, Kevin Wynn}
 \date{October 7th, 2015}
 
@@ -19,12 +21,21 @@
 \maketitle
 
 \section{Topic and Goal}
-\input{1_topic_goal.tex}
+\input{01_topic_goal.tex}
 
 \section{Group Organization}
-\input{1_group_organization.tex}
+\input{02_group_organization.tex}
+
+\section{ER Diagram}
+\input{03_er_diagram.tex}
+
+\section{Schema}
+\input{04_schema_outline.tex}
 
 \section{UI Wireframes Designs}
-\input{2_wireframe.tex}
+\input{05_wireframe.tex}
+
+\section{Business Logic}
+\input{06_business_logic.tex}
 
 \end{document}

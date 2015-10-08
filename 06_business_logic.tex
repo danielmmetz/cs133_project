@@ -1,0 +1,42 @@
+\noindent Below are the key aspects of the business logic that are integral to
+the functionality of the Room Draw application.
+
+\begin{itemize}
+\item A student who is a representative of a group makes the request on behalf
+of the group. The representative of a group is by default the student in the
+group with the highest \(drawNum\).
+
+\item On creation of a group, the \(G.drawNum\) is calculated. The manner by
+which it is calculated depends on the type of group and is described as follows:
+
+\[
+    G.drawNum =
+        \begin{cases}
+        \text{mean} \del{S_1, \ldots, S_r} & \quad \mbox{if suite} \\
+        \min \del{S_1, \ldots, S_r} & \quad \mbox{otherwise}
+        \end{cases}
+\]
+
+\item For a tuple \(o \in Occupy\), \(o.inFall\) is true or \(o.inSpring\) is true.
+
+\item Queries for Suites are a search for Collections with non-NULL \(suiteNum\)
+attributes.
+
+\item The number of students in any group must be between 1 and 6 (inclusive).
+If that group is also a suite, it must have at least 3. A student can be in any
+number of groups, provided that only one is a suite.
+
+\item The attribute \(absRank\) in the \(Request\) relation is a \texttt{real} to
+facilitate the ordering of requests.  We set the maximum number of requests to
+be 1000, then the first three decimal places specify the student's ordered
+preference. In other words, if a representative student \(s\) specifies an
+ordering \(1,2,\ldots, n\), then the requests \(r_1,r_2, \ldots, r_n \in
+Request\) are created such that \[r_i.absRank = s.drawNum + i/1000.0\]
+
+\item The minimum \(drawNum\) for students is \num{10000}. This allows for
+friendship suites to be given priority. On committing the requests \(r_1\ldots
+r_n\), if \(r_i.cid\) corresponds to a friendship suite, \(r_i.drawNum\) is
+automatically reduced by this minimum \(drawNum\), \num{10000}. This gives
+requests for a friendship suite preferred \(absRank\) values.
+\end{itemize}
+

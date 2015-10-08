@@ -3,7 +3,7 @@ In this section we provide mock-ups of a possible UI for our room draw website.
 \subsection{Main Pages}
 \subsubsection{Login Page}
 
-\begin{figure} \centering
+\begin{figure}[H] \centering
 \includegraphics[scale=.15]{wireframe/login}
 \caption{a login page}
 \label{fig:wirelogin}
@@ -37,8 +37,8 @@ a clickable tab. Upon a click, the corresponding map(s) for that dorm will fill
 up the main section of the page.
 
 A possible extension, though one we consider well beyond the scope of the
-project as we image it, could be to enable click-actions on the maps. By this we
-mean that if a particular dorm is clicked on the map, a context menu could
+project as we imagine it, could be to enable click-actions on the maps. By this
+we mean that if a particular dorm is clicked on the map, a context menu could
 appear, offering the user to add the selected dorm (or suite) to their autodraw
 queue.
 
@@ -71,11 +71,10 @@ box will remove that room/collection from the selected group's autodraw queue.
 
 The third choice on the left bar loads the ``Group Editor'' as shown in
 \cref{fig:wiregroup}. On this page, one may create a new group, or edit an
-existing group. Editing includes adding or removing group members. If a group
-has three members, the ``suite'' checkbox may be toggled. Otherwise, the
-checkbox is unchecked for groups of two or smaller and is checked for groups
-larger than three. A group may have no more than six individuals, and a user is
-limiting to participating in at most one suite group.
+existing group. Editing includes adding or removing group members. The ``suite''
+checkbox is unchecked for groups of one or two and is checked for larger groups.
+A group may have no more than six individuals, and a user is limiting to
+participating in at most one suite group.
 
 \subsubsection{Autodraw Preference Page}
 \begin{figure} \centering
@@ -100,31 +99,31 @@ without having to go back to the search page.
 
 In the sections that follow, we briefly describe some additional pages available
 to administrators. We currently consider these pages to be beyond the scope our
-our project currently, but serve as possible extensions.
+our project, but serve as possible extensions.
 
-\subsubsection{Admin Suite Editor}
+\subsubsection{Admin collection Editor}
 \begin{figure} \centering
 \includegraphics[scale=.15]{wireframe/admin_suite_editor}
-\caption{a suite editing page for admins}
-\label{fig:wireadmin-suite-editor}
+\caption{a collection editing page for admins}
+\label{fig:wireadmin-collection-editor}
 \end{figure}
 
-\Cref{fig:wireadmin-suite-editor} shows what a ``suite-editor'' could look like.
-We imagine this page such that it lists existing suites in the leftmost of the
-three panes. This pane allows for a suite to be deleted as well as for a new
-collection to be designated. The middle pane displays the rooms that make up the
-collection. The rightmost pane allows filtering through dorms not yet part of a
-collection. Between the middle and right panes are left and right arrows.
-Respectively, these arrows allow a room to be added and removed from the
-currently selected collection.
+\Cref{fig:wireadmin-collection-editor} shows what a ``collection-editor'' could
+look like. We imagine this page such that it lists existing collections in the
+leftmost of the three panes. This pane allows for a collection to be deleted as
+well as for a new collection to be designated. The middle pane displays the
+rooms that make up the collection. The rightmost pane allows filtering through
+dorms not yet part of a collection. Between the middle and right panes are left
+and right arrows. Respectively, these arrows allow a room to be added and
+removed from the currently selected collection.
 
 \subsubsection{Admin Assignment Editor}
-\begin{figure} \centering
+\begin{figure}[H] \centering
 \includegraphics[scale=.15]{wireframe/admin_assignment_editor}
 \caption{an assignment editing page for admins}
 \label{fig:wireadmin-assignment-editor}
+\end{figure}
 
 The ``Admin Assignment Editor'' (\cref{fig:wireadmin-assignment-editor}) would
 allow an admin to make changes to current assignments. This might include
 changing a student's draw number and room to which a student is assigned.
-\end{figure}
