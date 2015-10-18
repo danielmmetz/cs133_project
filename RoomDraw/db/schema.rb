@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018221020) do
+ActiveRecord::Schema.define(version: 20151018223555) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "suite_num",  limit: 4
@@ -39,6 +39,32 @@ ActiveRecord::Schema.define(version: 20151018221020) do
   add_index "members", ["draw_group_id"], name: "group_id", using: :btree
   add_index "members", ["student_id"], name: "student_id", using: :btree
 
+  create_table "occupies", force: :cascade do |t|
+    t.integer  "student_id",    limit: 4
+    t.integer  "room_id",       limit: 4
+    t.string   "dorm_name",     limit: 255
+    t.string   "room_num",      limit: 255
+    t.integer  "academic_year", limit: 4
+    t.boolean  "in_fall?"
+    t.boolean  "in_spring?"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "occupies", ["room_id"], name: "fk_rails_95d84e3073", using: :btree
+  add_index "occupies", ["student_id"], name: "fk_rails_4a9d76a866", using: :btree
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "draw_group_id", limit: 4
+    t.integer  "collection_id", limit: 4
+    t.decimal  "rankAbsolute",            precision: 10
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "requests", ["collection_id"], name: "fk_rails_7d23987a4b", using: :btree
+  add_index "requests", ["draw_group_id"], name: "fk_rails_6a394ae907", using: :btree
+
   create_table "rooms", force: :cascade do |t|
     t.string   "dorm_name",     limit: 255
     t.string   "room_num",      limit: 255
@@ -61,5 +87,9 @@ ActiveRecord::Schema.define(version: 20151018221020) do
   add_foreign_key "draw_groups", "students", name: "rep_id"
   add_foreign_key "members", "draw_groups", name: "group_id"
   add_foreign_key "members", "students", name: "student_id"
+  add_foreign_key "occupies", "rooms"
+  add_foreign_key "occupies", "students"
+  add_foreign_key "requests", "collections"
+  add_foreign_key "requests", "draw_groups"
   add_foreign_key "rooms", "collections"
 end
