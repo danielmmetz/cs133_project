@@ -138,4 +138,7 @@ sympy-plots-for-*.tex/
 
 # Mac finder files and hidden folders
 .DS_Store
-RoomDraw/Gemlock.file
+RoomDraw/Gemfile.lock
+
+# Don't include test files.
+RoomDraw/test/*
