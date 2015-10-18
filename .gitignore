@@ -142,3 +142,4 @@ RoomDraw/Gemfile.lock
 
 # Don't include test files.
 RoomDraw/test/*
+db/schema.rb

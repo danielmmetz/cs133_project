@@ -11,6 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20151018185207) do
 
+  create_table "draw_groups", force: :cascade do |t|
+    t.integer  "student_id", limit: 4
+    t.integer  "draw_num",   limit: 4
+    t.boolean  "for_suite?"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "draw_groups", ["student_id"], name: "rep_id", using: :btree
+
+  create_table "members", force: :cascade do |t|
+    t.integer  "draw_group_id", limit: 4
+    t.integer  "student_id",    limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "members", ["draw_group_id"], name: "group_id", using: :btree
+  add_index "members", ["student_id"], name: "student_id", using: :btree
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "draw_num",   limit: 4
+    t.integer  "grad_year",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_foreign_key "draw_groups", "students", name: "rep_id"
+  add_foreign_key "members", "draw_groups", name: "group_id"
+  add_foreign_key "members", "students", name: "student_id"
 end
