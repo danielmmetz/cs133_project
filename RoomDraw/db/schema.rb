@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018185207) do
+ActiveRecord::Schema.define(version: 20151018221020) do
+
+  create_table "collections", force: :cascade do |t|
+    t.integer  "suite_num",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "draw_groups", force: :cascade do |t|
     t.integer  "student_id", limit: 4
@@ -33,6 +39,17 @@ ActiveRecord::Schema.define(version: 20151018185207) do
   add_index "members", ["draw_group_id"], name: "group_id", using: :btree
   add_index "members", ["student_id"], name: "student_id", using: :btree
 
+  create_table "rooms", force: :cascade do |t|
+    t.string   "dorm_name",     limit: 255
+    t.string   "room_num",      limit: 255
+    t.integer  "capacity",      limit: 4
+    t.integer  "collection_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "rooms", ["collection_id"], name: "fk_rails_c704d37356", using: :btree
+
   create_table "students", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "draw_num",   limit: 4
@@ -44,4 +61,5 @@ ActiveRecord::Schema.define(version: 20151018185207) do
   add_foreign_key "draw_groups", "students", name: "rep_id"
   add_foreign_key "members", "draw_groups", name: "group_id"
   add_foreign_key "members", "students", name: "student_id"
+  add_foreign_key "rooms", "collections"
 end
