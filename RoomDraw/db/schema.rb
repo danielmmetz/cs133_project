@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018223555) do
+ActiveRecord::Schema.define(version: 20151018225630) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "suite_num",  limit: 4
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20151018223555) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "members", ["draw_group_id"], name: "group_id", using: :btree
+  add_index "members", ["draw_group_id", "student_id"], name: "index_members_on_draw_group_id_and_student_id", unique: true, using: :btree
   add_index "members", ["student_id"], name: "student_id", using: :btree
 
   create_table "occupies", force: :cascade do |t|
@@ -57,13 +57,14 @@ ActiveRecord::Schema.define(version: 20151018223555) do
   create_table "requests", force: :cascade do |t|
     t.integer  "draw_group_id", limit: 4
     t.integer  "collection_id", limit: 4
-    t.decimal  "rankAbsolute",            precision: 10
+    t.decimal  "rank_absolute",           precision: 10
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
 
   add_index "requests", ["collection_id"], name: "fk_rails_7d23987a4b", using: :btree
   add_index "requests", ["draw_group_id"], name: "fk_rails_6a394ae907", using: :btree
+  add_index "requests", ["rank_absolute"], name: "index_requests_on_rank_absolute", unique: true, using: :btree
 
   create_table "rooms", force: :cascade do |t|
     t.string   "dorm_name",     limit: 255
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20151018223555) do
   end
 
   add_index "rooms", ["collection_id"], name: "fk_rails_c704d37356", using: :btree
+  add_index "rooms", ["dorm_name", "room_num"], name: "index_rooms_on_dorm_name_and_room_num", unique: true, using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -83,6 +85,8 @@ ActiveRecord::Schema.define(version: 20151018223555) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "students", ["draw_num"], name: "index_students_on_draw_num", unique: true, using: :btree
 
   add_foreign_key "draw_groups", "students", name: "rep_id"
   add_foreign_key "members", "draw_groups", name: "group_id"

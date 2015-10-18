@@ -3,7 +3,7 @@ class CreateRequests < ActiveRecord::Migration
     create_table :requests do |t|
       t.integer :draw_group_id
       t.integer :collection_id
-      t.decimal :rankAbsolute
+      t.decimal :rank_absolute
 
       t.timestamps null: false
     end
