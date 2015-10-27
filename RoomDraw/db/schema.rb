@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20151018225630) do
   create_table "draw_groups", force: :cascade do |t|
     t.integer  "student_id", limit: 4
     t.integer  "draw_num",   limit: 4
-    t.boolean  "for_suite?"
+    t.boolean  "for_suite"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 20151018225630) do
   add_index "students", ["draw_num"], name: "index_students_on_draw_num", unique: true, using: :btree
 
   add_foreign_key "draw_groups", "students", name: "rep_id"
-  add_foreign_key "members", "draw_groups", name: "group_id"
-  add_foreign_key "members", "students", name: "student_id"
+  add_foreign_key "members", "draw_groups", name: "group_id", on_delete: :cascade
+  add_foreign_key "members", "students", name: "student_id", on_delete: :cascade
   add_foreign_key "occupies", "rooms"
   add_foreign_key "occupies", "students"
   add_foreign_key "requests", "collections"

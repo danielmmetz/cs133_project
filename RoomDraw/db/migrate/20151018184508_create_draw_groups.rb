@@ -3,7 +3,7 @@ class CreateDrawGroups < ActiveRecord::Migration
     create_table :draw_groups do |t|
       t.integer :student_id
       t.integer :draw_num
-      t.boolean :for_suite?
+      t.boolean :for_suite
       t.timestamps null: false
     end
 
