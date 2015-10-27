@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20151018225630) do
     t.string   "dorm_name",     limit: 255
     t.string   "room_num",      limit: 255
     t.integer  "capacity",      limit: 4
-    t.integer  "collection_id", limit: 4
+    t.integer  "collection_id", limit: 4,   null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

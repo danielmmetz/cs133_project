@@ -5,7 +5,7 @@ class CreateRooms < ActiveRecord::Migration
       t.string :dorm_name
       t.string :room_num
       t.integer :capacity
-      t.integer :collection_id
+      t.integer :collection_id, null: false
 
       t.timestamps null: false
     end
