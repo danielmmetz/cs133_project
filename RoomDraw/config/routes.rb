@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  get 'session/new'
+  get 'users/index'
+
+  get '/users_login', to: 'users#show', as: 'user'
+
+  resources :users
+
+  # get 'session/new'
 
   get    'login' => 'session#new'
   post   'login' => 'session#create'
