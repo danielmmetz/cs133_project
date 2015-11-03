@@ -7,7 +7,7 @@ class SessionController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       current_user
       log_in user
-      flash[:notice] = "Login Successful"
+      flash[:success] = "Login Successful"
       redirect_to user
     else
       flash[:warning] = "Incorrect StudentID/Password Combo"
@@ -17,6 +17,7 @@ class SessionController < ApplicationController
 
   def destroy
     log_out
+    flash[:success] = "Successfully Logged Out"
     redirect_to login_path
   end
 end

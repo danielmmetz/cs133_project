@@ -23,6 +23,9 @@
     </nav>
   </div>
   <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: "alert alert-info fade in center notice" %>
+    <%= content_tag :div, class: "alert #{bootstrap_class_for name} fade in center notice" do %>
+      <%= msg %>
+      <%= content_tag :button, 'x', class: "close", data: {dismiss: "alert"} %>
+    <% end -%>
   <% end -%>
 </header>
