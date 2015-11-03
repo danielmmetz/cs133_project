@@ -22,4 +22,7 @@
       </ul>
     </nav>
   </div>
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: "alert alert-info fade in center notice" %>
+  <% end -%>
 </header>
