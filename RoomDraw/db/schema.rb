@@ -11,6 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20151030232612) do
+
+  create_table "users", id: false, force: :cascade do |t|
+    t.string   "student_id",      limit: 255, null: false
+    t.string   "password_digest", limit: 255, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "users", ["student_id"], name: "index_users_on_student_id", unique: true, using: :btree
 
 end
