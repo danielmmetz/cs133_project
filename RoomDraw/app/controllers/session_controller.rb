@@ -7,8 +7,10 @@ class SessionController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       current_user
       log_in user
+      flash[:notice] = "Login Successful"
       redirect_to user
     else
+      flash[:warning] = "Incorrect StudentID/Password Combo"
       render 'new'
     end
   end
