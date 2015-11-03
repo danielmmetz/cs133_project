@@ -11,22 +11,17 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-3" id="leftCol">
-        <div class="well">
-          <ul class="nav nav-stacked" id="sidebar">
-            <li><a href="#sec1">Section 1</a></li>
-            <li><a href="#sec2">Section 2</a></li>
-            <li><a href="#sec3">Section 3</a></li>
-            <li><a href="#sec4">Section 4</a></li>
-          </ul>
+
+      <% if @current_user -%>
+        <%= render "layouts/sidebar" %>
+        <div class="col-md-9">
+          <%= yield %>
         </div>
-      </div>
 
-      <div class="col-md-9">
-
+      <% else -%>
         <%= yield %>
+      <% end -%>
 
-      </div>
     </div>
   </div>
 </body>
