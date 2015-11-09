@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018225630) do
+ActiveRecord::Schema.define(version: 20151030232612) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "suite_num",  limit: 4
@@ -87,6 +87,15 @@ ActiveRecord::Schema.define(version: 20151018225630) do
   end
 
   add_index "students", ["draw_num"], name: "index_students_on_draw_num", unique: true, using: :btree
+
+  create_table "users", id: false, force: :cascade do |t|
+    t.string   "student_id",      limit: 255, null: false
+    t.string   "password_digest", limit: 255, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "users", ["student_id"], name: "index_users_on_student_id", unique: true, using: :btree
 
   add_foreign_key "draw_groups", "students", name: "rep_id"
   add_foreign_key "members", "draw_groups", name: "group_id", on_delete: :cascade
