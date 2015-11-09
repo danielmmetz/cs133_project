@@ -1,2 +1,13 @@
-<h1>Groups#show</h1>
-<p>Find me in app/views/groups/show.html.erb</p>
+<%= stylesheet_link_tag "groups" %>
+<h1>Groups</h1>
+<table>
+  <tr>
+    <th> Group Id </th>
+    <th> Representative </th>
+    <th> Draw Number </th>
+    <th> Suite? </th>
+  </tr>
+  <% draw_groups.each do |group| -%>
+    <%= render partial: "group", object: group %>
+  <% end -%>
+</table>
