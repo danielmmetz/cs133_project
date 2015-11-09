@@ -9,9 +9,20 @@
 <body>
   <%= render "layouts/header" %>
 
+  <div class="container">
+    <div class="row">
 
+      <% if @current_user -%>
+        <%= render "layouts/sidebar" %>
+        <div class="col-md-10">
+          <%= yield %>
+        </div>
 
-  <%= yield %>
+      <% else -%>
+        <%= yield %>
+      <% end -%>
 
+    </div>
+  </div>
 </body>
 </html>

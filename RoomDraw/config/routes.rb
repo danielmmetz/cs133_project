@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  get 'users/index'
 
   get '/users_login', to: 'users#show', as: 'user'
 
   resources :users
+  resources :search
+  resources :groups
+  resources :queue
+  resources :maps
 
   # get 'session/new'
 
