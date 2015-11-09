@@ -1,5 +1,10 @@
 <tr>
   <td> <%= group.id %> </td>
+  <td>
+    <% students_in(group).each do |mem|-%>
+      <%= mem.name %> <br/>
+    <% end -%>
+  </td>
   <td> <%= (Student.find group.student_id).name%> </td>
   <td> <%= group.draw_num%> </td>
   <td> <%= group.for_suite ? "YES" : "NO"%> </td>
