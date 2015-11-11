@@ -1,5 +1,8 @@
 <%= stylesheet_link_tag "groups" %>
-<h1>Groups</h1>
+<h1 style="display:inline-flex;">Groups</h1>
+
+<%= form_for(:group) {|f| f.submit "New Group", class: "btn btn-med btn-primary right"} %>
+
 <table>
   <tr>
     <th> Group Id </th>
@@ -9,7 +12,6 @@
     <th> Suite? </th>
   </tr>
   <% draw_groups.each do |group| -%>
-    <% puts "HELLO WORLD \n #{group} \n" %>
     <%= render partial: "group", object: group %>
   <% end -%>
 </table>

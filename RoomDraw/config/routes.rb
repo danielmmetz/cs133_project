@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post   'login' => 'session#create'
   delete 'login' => 'session#destroy'
 
+  # allow passing of user info to groups#create action
+  post '/groups/:id', to: 'groups#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

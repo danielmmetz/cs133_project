@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def create
+    redirect_to group_path
   end
 
   def destroy
