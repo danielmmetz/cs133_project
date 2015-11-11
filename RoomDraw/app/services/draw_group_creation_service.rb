@@ -18,6 +18,10 @@ class DrawGroupCreationService
     callibrate_draw_group
   end
 
+  def delete (id)
+    (DrawGroup.find id).destroy
+  end
+
   def callibrate_draw_group
     @draw_group.callibrate
   end

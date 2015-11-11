@@ -1,4 +1,5 @@
 <tr>
+  <td> <%= form_for(:group, url: group_path(group_id: group.id, action: :destroy)) {|f| f.submit "X" } %> </td>
   <td> <%= group.id %> </td>
   <td>
     <% students_in(group).each do |mem|-%>
