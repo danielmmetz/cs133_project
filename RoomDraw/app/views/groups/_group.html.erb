@@ -1,13 +1,13 @@
 <tr>
-  <td> <%= link_to "X", {:action => :destroy, group_id: group.id}, :method => :delete , :class => "btn btn-default" %></td>
+  <td> <%= link_to "X", group_path(group_id: group.id), :method => :delete, :class => "btn btn-default" %></td>
   <td> <%= group.id %> </td>
   <td>
     <% students_in(group).each do |mem|-%>
       <%= mem.name %> <br/>
-      <%= form_for :member do |f| -%>
-        <%= f.text_field :student_id, placeholder: "student id" %>
-        <%= f.submit "Add" %>
-      <% end -%>
+    <% end -%>
+    <%= form_for :member, url: groups_path(group_id:  group.id, id: ident) do |f| -%>
+      <%= f.text_field :student, placeholder: "student id" %>
+      <%= f.submit "Add" %>
     <% end -%>
   </td>
   <td> <%= (Student.find group.student_id).name%> </td>

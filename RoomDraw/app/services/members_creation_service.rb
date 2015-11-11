@@ -20,7 +20,8 @@ class MembersCreationService
   def can_add_member_to(draw_group, student_id)
     group_not_full(draw_group) and
     not already_in(draw_group, student_id) and
-    not too_many_groups student_id
+    not too_many_groups student_id and
+    student_id.present?
   end
 
   def draw_group_size(draw_group)

@@ -13,6 +13,7 @@
     <th> Suite? </th>
   </tr>
   <% draw_groups.each do |group| -%>
-    <%= render partial: "group", object: group %>
+    <%= render partial: "group", locals: {group: group, ident: current_user.id} %>
   <% end -%>
+
 </table>
