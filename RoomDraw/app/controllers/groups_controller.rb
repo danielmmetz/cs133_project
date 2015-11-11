@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
       draw_group_generator.call
       redirect_to group_path
     elsif params[:commit] == "Add"
-      dg = (draw_group params[:group_id])
+      dg = (draw_group params[:member][:group_id])
       stud_id = params[:member][:student]
       puts dg, stud_id
       if member_generator.create dg, stud_id
