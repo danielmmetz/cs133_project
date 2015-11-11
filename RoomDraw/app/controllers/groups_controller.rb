@@ -6,19 +6,12 @@ class GroupsController < ApplicationController
   end
 
   def create
-    puts params
-    if params[:action] == :destroy or params[:group_id].present?
-      flash[:error] = "DESTROY"
-      generator.delete params[:group_id]
-      redirect_to group_path
-    else
-      generator.call
-      redirect_to group_path
-    end
+    generator.call
+    redirect_to group_path
   end
 
   def destroy
-    flash[:error] = "DESTROY"
+    flash[:error] = "DESTROY -- destroy"
     generator.delete params[:group_id]
     render :show
   end
