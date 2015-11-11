@@ -8,8 +8,7 @@ class DrawGroup < ActiveRecord::Base
 
   ## Assign the representitive if none has been assigned
   def callibrate
-    assign_representative if student.nil?
-    self.update_attributes draw_num: calculate_draw_num
+    self.update_attributes draw_num: calculate_draw_num, student_id: assign_representative
   end
 
   def min_suite
@@ -28,7 +27,9 @@ class DrawGroup < ActiveRecord::Base
   def assign_representative
     # access the members in the has_many relation
     members.each do |m|
-      @student = m if @student.nil? or m.student.draw_num < @student.draw_num
+      if @student.nil? or m.student.draw_num < @student.draw_num
+        @student = m.student
+      end
     end
     student_id = @student.id
   end

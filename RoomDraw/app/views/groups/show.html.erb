@@ -9,6 +9,7 @@
     <th> Suite? </th>
   </tr>
   <% draw_groups.each do |group| -%>
+    <% puts "HELLO WORLD \n #{group} \n" %>
     <%= render partial: "group", object: group %>
   <% end -%>
 </table>
