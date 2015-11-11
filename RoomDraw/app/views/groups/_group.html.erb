@@ -7,8 +7,12 @@
     <% end -%>
     <%= form_for :member,  {:action => "create", :id => group, :controller => "groups"} do |f| -%>
       <%= f.hidden_field :group_id, value: group.id  %>
-      <%= f.text_field :student, placeholder: "student id" %>
-      <%= f.submit "Add" %>
+      <div class="input-group rep-width">
+        <%= f.text_field :student, placeholder: "student id" %>
+        <span class="input-group-btn">
+          <%= f.submit "Add" , {class: "btn btn-sm btn-default add-button"}%>
+        </span>
+      </div>
     <% end -%>
   </td>
   <td> <%= (Student.find group.student_id).name%> </td>
