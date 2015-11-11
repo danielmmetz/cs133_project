@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/users_login', to: 'users#show', as: 'user'
+  get '/users_login/:id', to: 'users#show', as: 'user'
 
   resources :users
   resources :search
