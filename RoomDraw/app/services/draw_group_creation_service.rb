@@ -2,10 +2,11 @@ class DrawGroupCreationService
 
   # will create a draw group for the members.
   # members is an array of ids of those in the group
-  def initialize (params)
-    @rep_id = params[:rep_id]
-    @for_suite = params[:suite?]
-    @mem_ids = params[:mem_ids]
+  def initialize (options)
+    puts options
+    @rep_id = options[:rep_id]
+    @for_suite = options[:suite?]
+    @mem_ids = options[:mem_ids]
     @members = []
   end
 

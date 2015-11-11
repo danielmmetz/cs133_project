@@ -26,12 +26,11 @@ class DrawGroup < ActiveRecord::Base
   ## Must be called after the creation of the membership relations
   def assign_representative
     # access the members in the has_many relation
-    members.each do |m|
-      if @student.nil? or m.student.draw_num < @student.draw_num
-        @student = m.student
-      end
+    @student = Student.find(members.first.student_id)
+    @members.each do |m|
+      @student = m.student if m.student.draw_num < @student.draw_num
     end
-    student_id = @student.id
+    @student.id
   end
 
   ## This method calculates the draw number of the Draw Group
@@ -51,6 +50,7 @@ class DrawGroup < ActiveRecord::Base
 
       # find the minimum draw num
       members.each do |m|
+        puts "HELLO WORLD"
         puts m.student.draw_num
         min = m.student.draw_num if m.student.draw_num < min
       end
@@ -59,6 +59,7 @@ class DrawGroup < ActiveRecord::Base
   end
 
   def members
-    Member.where(draw_group_id: self.id)
+    puts "THE GROUP ID: #{self.id}"
+    @members = Member.where(draw_group_id: self.id)
   end
 end
