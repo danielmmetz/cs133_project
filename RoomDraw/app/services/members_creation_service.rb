@@ -30,10 +30,8 @@ class MembersCreationService
 
   def group_not_full(draw_group)
     num = draw_group_size draw_group
-    num <= draw_group.max_suite and num > 0 and                     # not to many people
-      ((not draw_group.for_suite and num < draw_group.min_suite) or # not too many for double
-        (draw_group.for_suite and num >= draw_group.min_suite))     # not too few for suite
-   end
+    num <= draw_group.max_suite and num > 0             # between 1 and 6 people
+  end
 
   def already_in(draw_group, student_id)
     Member.where(draw_group_id: draw_group.id, student_id: student_id).present?

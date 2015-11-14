@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
   end
 
   def index
+    redirect_to group_path(id: current_user.student_id)
   end
 
   def create

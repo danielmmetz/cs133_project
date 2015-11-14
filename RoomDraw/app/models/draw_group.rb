@@ -8,7 +8,7 @@ class DrawGroup < ActiveRecord::Base
 
   ## Assign the representitive if none has been assigned
   def callibrate
-    self.update_attributes draw_num: calculate_draw_num, student_id: assign_representative
+    self.update_attributes draw_num: calculate_draw_num, student_id: assign_representative, for_suite: detect_suite
   end
 
   def min_suite
@@ -57,6 +57,11 @@ class DrawGroup < ActiveRecord::Base
       min - 10000
     end
   end
+
+  def detect_suite
+    @members.length > 2
+  end
+
 
   def members
     puts "THE GROUP ID: #{self.id}"
