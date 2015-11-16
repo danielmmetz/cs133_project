@@ -1,5 +1,16 @@
+<%= stylesheet_link_tag "groups" %>
 <h1>Find your room!</h1>
 
 <!-- form_for with filters... update variable results -->
 
-<!-- results.each{ ## render partial of room ... paginate??}  -->
+<table>
+  <tr>
+    <th> Collection Id</th>
+    <th> Dorm </th>
+    <th> Room Number</th>
+    <th> Capacity </th>
+  </tr>
+  <% results.each do |r| -%>
+    <%= render partial: "result", locals: { result: r } %>
+  <% end -%>
+</table>
