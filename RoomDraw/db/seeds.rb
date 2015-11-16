@@ -13,4 +13,12 @@
   StudentCreationService.new id:100+i, name: "Jim#{i} Turner#{i}", draw_num: i, grad_year: 2017
 }
 
+1.upto(5).each do |i|
+  Collection.create id: i, suite_num: i
+end
 
+1.upto(5).each do |i|
+  Room.create dorm_name: "clk#{i}", room_num: i, capacity: i%2+1, collection_id: i
+end
+
+Room.create dorm_name: "clk3", room_num: 6, capacity: 1, collection_id: 3
