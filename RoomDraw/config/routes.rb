@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # allow passing of user info to groups#create action
   post '/groups/:id', to: 'groups#create'
+  post '/search/:id', to: 'search#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

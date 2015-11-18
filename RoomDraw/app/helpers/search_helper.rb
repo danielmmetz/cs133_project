@@ -1,6 +1,10 @@
 module SearchHelper
 
   def results(conds={})
-    Room.where conds
+    if conds.present?
+      Room.where conds.symbolize_keys
+    else
+      Room.all
+    end
   end
 end

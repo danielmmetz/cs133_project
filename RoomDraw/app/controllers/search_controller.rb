@@ -6,5 +6,6 @@ class SearchController < ApplicationController
   end
 
   def create
+    render :show
   end
 end

@@ -2,6 +2,8 @@
 <h1>Find your room!</h1>
 
 <!-- form_for with filters... update variable results -->
+<%= render partial: "querybox" %>
+
 
 <table>
   <tr>
@@ -10,7 +12,7 @@
     <th> Room Number</th>
     <th> Capacity </th>
   </tr>
-  <% results.each do |r| -%>
+  <% (results params[:query]).each do |r| -%>
     <%= render partial: "result", locals: { result: r } %>
   <% end -%>
 </table>
