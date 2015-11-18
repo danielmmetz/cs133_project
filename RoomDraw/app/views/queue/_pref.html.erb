@@ -2,6 +2,9 @@
 <% r = (Room.where collection_id: c.id).first %>
 
 <tr>
+  <td> <%= link_to "X", queue_path(req_id: request.id), :method =>
+    :delete,
+    :class => "btn btn-default" %></td>
   <td> <%= request.rank_absolute %> </td>
   <td> <%= r.dorm_name %> </td>
   <td> <%= c.suite_num %> </td>

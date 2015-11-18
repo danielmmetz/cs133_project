@@ -9,5 +9,9 @@ class QueueController < ApplicationController
   end
 
   def destroy
+    flash[:error] = "DESTROY -- destroy"
+    (Request.find params[:req_id]).destroy
+    render :show
   end
+
 end
