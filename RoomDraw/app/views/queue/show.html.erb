@@ -1,2 +1,14 @@
-<h1>Queue#show</h1>
-<p>Find me in app/views/queue/show.html.erb</p>
+<%= stylesheet_link_tag "groups" %>
+<h1>Preferences Queue</h1>
+
+<table>
+  <tr>
+    <th> Rank </th>
+    <th> Dorm Name </th>
+    <th> Room Number</th>
+    <th> Group </th>
+  </tr>
+  <% requests.each do |r| -%>
+    <%= render partial: "pref", locals: { request: r } %>
+  <% end -%>
+</table>

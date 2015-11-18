@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20151030232612) do
   add_foreign_key "members", "students", name: "student_id", on_delete: :cascade
   add_foreign_key "occupies", "rooms"
   add_foreign_key "occupies", "students"
-  add_foreign_key "requests", "collections"
-  add_foreign_key "requests", "draw_groups"
+  add_foreign_key "requests", "collections", on_delete: :cascade
+  add_foreign_key "requests", "draw_groups", on_delete: :cascade
   add_foreign_key "rooms", "collections"
 end

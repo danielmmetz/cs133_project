@@ -1,0 +1,9 @@
+<% c = Collection.find request.collection_id %>
+<% r = (Room.where collection_id: c.id).first %>
+
+<tr>
+  <td> <%= request.rank_absolute %> </td>
+  <td> <%= r.dorm_name %> </td>
+  <td> <%= c.suite_num %> </td>
+  <td> <%= request.draw_group_id %> </td>
+</tr>
