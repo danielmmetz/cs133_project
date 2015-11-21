@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    flash[:error] = "DESTROY -- destroy"
+    flash[:error] = "Group has been removed."
     draw_group_generator.delete params[:group_id]
     render :show
   end
