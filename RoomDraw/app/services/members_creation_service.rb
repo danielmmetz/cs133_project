@@ -30,7 +30,7 @@ class MembersCreationService
 
   def group_not_full(draw_group)
     num = draw_group_size draw_group
-    num <= draw_group.max_suite and num > 0             # between 1 and 6 people
+    num < draw_group.max_suite and num > 0             # between 1 and 6 people
   end
 
   def already_in(draw_group, student_id)

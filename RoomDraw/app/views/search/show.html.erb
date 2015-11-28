@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "groups" %>
+<%= stylesheet_link_tag "enqueue" %>
 <h1>Find your room!</h1>
 
 <!-- form_for with filters... update variable results -->
@@ -11,8 +12,10 @@
     <th> Dorm </th>
     <th> Room Number</th>
     <th> Capacity </th>
+    <th> Select Group </th>
   </tr>
+  <% groups = DrawGroup.where student_id: current_user.student_id %>
   <% (results params[:query]).each do |r| -%>
-    <%= render partial: "result", locals: { result: r } %>
+    <%= render partial: "result", locals: { result: r, groups: groups } %>
   <% end -%>
 </table>

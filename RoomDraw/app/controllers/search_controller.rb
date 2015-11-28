@@ -6,6 +6,11 @@ class SearchController < ApplicationController
   end
 
   def create
+    if params.has_key? :request
+        request = params[:request]
+        rcs = RequestCreationService.new
+        rcs.create request[:group_id], request[:collection_id]
+    end
     render :show
   end
 end
