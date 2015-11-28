@@ -9,7 +9,7 @@
     <th> Room Number</th>
     <th> Group </th>
   </tr>
-  <% requests.each do |r| -%>
-    <%= render partial: "pref", locals: { request: r } %>
+  <% requests.each_with_index do |r,i| -%>
+    <%= render partial: "pref", locals: { request: r, index: i } %>
   <% end -%>
 </table>
