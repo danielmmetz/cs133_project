@@ -59,7 +59,10 @@ class DrawGroup < ActiveRecord::Base
   end
 
   def detect_suite
-    not @members.nil? and @members.length > 2
+    puts "MEMBERS: "
+    return if members.nil?
+    @members.each {|m| puts "\t #{m}" }
+    @for_suite ||= @members.length > 2
   end
 
 

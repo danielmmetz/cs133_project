@@ -2,7 +2,7 @@ class CreateDrawGroups < ActiveRecord::Migration
   def change
     create_table :draw_groups do |t|
       t.integer :student_id
-      t.float :draw_num
+      t.decimal :draw_num, precision: 10, scale: 5
       t.boolean :for_suite
       t.timestamps null: false
     end
