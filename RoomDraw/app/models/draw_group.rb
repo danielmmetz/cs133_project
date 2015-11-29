@@ -50,8 +50,6 @@ class DrawGroup < ActiveRecord::Base
 
       # find the minimum draw num
       members.each do |m|
-        puts "HELLO WORLD"
-        puts m.student.draw_num
         min = m.student.draw_num if m.student.draw_num < min
       end
       min - 10000

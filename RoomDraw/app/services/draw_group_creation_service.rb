@@ -3,9 +3,8 @@ class DrawGroupCreationService
   # will create a draw group for the members.
   # members is an array of ids of those in the group
   def initialize (options)
-    puts options
-    @rep_id = options[:rep_id]
-    @for_suite = options[:suite?]
+    @rep_id = options[:rep_id] or nil
+    @for_suite = options[:suite?] or false
     @mem_ids = options[:mem_ids]
     @members = []
   end

@@ -13,18 +13,24 @@ class GroupsController < ApplicationController
     elsif params[:commit] == "Add"
       dg = (draw_group params[:member][:group_id])
       stud_id = params[:member][:student]
-      puts dg, stud_id
-      if member_generator.create dg, stud_id
-        flash[:notice] = "Student #{params[:member][:student]} Added"
+      if (Student.where id: stud_id).length > 0
+        puts dg, stud_id
+        if member_generator.create dg, stud_id
+          flash[:notice] = "Student #{params[:member][:student]} Added"
+        else
+          flash[:error] = "Group is full, student is in too many groups, or
+          student is already in the group"
+        end
       else
-        flash[:warning] = "Group is full, student is in too many groups, or student is already in the group"
+        flash[:warning] = "Provided student id does not exist, please try
+        again."
       end
       render :show
     end
   end
 
   def destroy
-    flash[:error] = "DESTROY -- destroy"
+    flash[:error] = "Group has been removed."
     draw_group_generator.delete params[:group_id]
     render :show
   end
