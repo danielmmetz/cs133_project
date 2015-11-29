@@ -7,7 +7,7 @@ class DrawGroup < ActiveRecord::Base
   self.primary_key = :id
 
   ## Assign the representitive if none has been assigned
-  def callibrate
+  def calibrate
     self.update_attributes draw_num: calculate_draw_num, student_id: assign_representative, for_suite: detect_suite
   end
 
