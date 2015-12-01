@@ -38,7 +38,6 @@ class DrawGroup < ActiveRecord::Base
   def calculate_draw_num
     ## If it is a suite, calculate the average as a real
     if detect_suite then
-      puts "SUITE DETECTED"
       sum = 0.0
       count = 0.0
       members.each do |m|
@@ -47,27 +46,23 @@ class DrawGroup < ActiveRecord::Base
       end
       sum / count
     else
-      puts "NOT A SUITE"
       min = 100000000   # pick a sufficiently large number
 
       # find the minimum draw num
       members.each do |m|
         min = m.student.draw_num if m.student.draw_num < min
       end
-      min - 10000
+      min
     end
   end
 
   def detect_suite
-    puts "MEMBERS: "
     return if members.nil?
-    @members.each {|m| puts "\t #{m}" }
     @for_suite ||= @members.length > 2
   end
 
 
   def members
-    puts "THE GROUP ID: #{self.id}"
     @members = Member.where(draw_group_id: self.id)
   end
 end
