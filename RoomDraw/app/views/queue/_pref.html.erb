@@ -5,7 +5,7 @@
   <td> <%= link_to "X", queue_path(req_id: request.id), :method =>
     :delete,
     :class => "btn btn-default" %></td>
-  <td> <%= request.rank_absolute %> </td>
+  <td> <%= index + 1 %> </td>
   <td> <%= r.dorm_name %> </td>
   <td> <%= c.suite_num %> </td>
   <td> <%= request.draw_group_id %> </td>
