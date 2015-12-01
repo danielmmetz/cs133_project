@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
 
   def create
     if params[:commit] == "New Group"
-      if MembersCreationService.new.too_many_groups params[:id]
+      if member_generator.too_many_groups params[:id]
         flash[:error] = "You are already in the maximum number of groups allowed"
       else
         draw_group_generator.call
