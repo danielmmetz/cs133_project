@@ -22,3 +22,8 @@ end
 end
 
 Room.create dorm_name: "clk3", room_num: 6, capacity: 1, collection_id: 3
+
+(DrawGroupCreationService.new mem_ids: [101, 102]).call
+
+Request.create draw_group_id: 1, collection_id: 1, rank_absolute: 1
+Request.create draw_group_id: 31, collection_id: 2, rank_absolute: 2
