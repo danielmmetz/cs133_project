@@ -6,7 +6,7 @@ class MembersCreationService
   def create(draw_group, student_id)
     return false unless can_add_member_to draw_group, student_id
     m = Member.create draw_group_id: draw_group.id, student_id: student_id
-    draw_group.callibrate
+    draw_group.calibrate
     draw_group.save
     return m
   end
@@ -14,7 +14,7 @@ class MembersCreationService
   def delete(draw_group, student_id)
     mem = Member.where(draw_group_id: draw_group.id, student_id: student_id).first
     mem.destroy if mem.present?
-    draw_group.callibrate
+    draw_group.calibrate
   end
 
   def can_add_member_to(draw_group, student_id)

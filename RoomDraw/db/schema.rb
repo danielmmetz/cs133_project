@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20151030232612) do
 
   create_table "draw_groups", force: :cascade do |t|
     t.integer  "student_id", limit: 4
-    t.integer  "draw_num",   limit: 4
+    t.decimal  "draw_num",             precision: 10, scale: 5
     t.boolean  "for_suite"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   add_index "draw_groups", ["student_id"], name: "rep_id", using: :btree

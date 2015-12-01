@@ -14,15 +14,15 @@ class DrawGroupCreationService
     rollback and return unless create_draw_group
     puts @draw_group
     create_members
-    callibrate_draw_group
+    calibrate_draw_group
   end
 
   def delete (id)
     (DrawGroup.find id).destroy
   end
 
-  def callibrate_draw_group
-    @draw_group.callibrate
+  def calibrate_draw_group
+    @draw_group.calibrate
   end
 
   private

@@ -7,7 +7,7 @@ class DrawGroup < ActiveRecord::Base
   self.primary_key = :id
 
   ## Assign the representitive if none has been assigned
-  def callibrate
+  def calibrate
     self.update_attributes draw_num: calculate_draw_num, student_id: assign_representative, for_suite: detect_suite
   end
 
@@ -37,12 +37,12 @@ class DrawGroup < ActiveRecord::Base
   ## Must be called after the creation of the membership relations
   def calculate_draw_num
     ## If it is a suite, calculate the average as a real
-    if @for_suite then
+    if detect_suite then
       sum = 0.0
-      count = 0
+      count = 0.0
       members.each do |m|
-        sum += m.student.draw_num - 10000
-        count += 1
+        sum += m.student.draw_num - 10000.0
+        count += 1.0
       end
       sum / count
     else
@@ -52,17 +52,17 @@ class DrawGroup < ActiveRecord::Base
       members.each do |m|
         min = m.student.draw_num if m.student.draw_num < min
       end
-      min - 10000
+      min
     end
   end
 
   def detect_suite
-    @members.length > 2
+    return if members.nil?
+    @for_suite ||= @members.length > 2
   end
 
 
   def members
-    puts "THE GROUP ID: #{self.id}"
     @members = Member.where(draw_group_id: self.id)
   end
 end
