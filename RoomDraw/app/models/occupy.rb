@@ -5,7 +5,7 @@ class Occupy < ActiveRecord::Base
 
   # define validations
   validate { fall_or_spring? }
-  validates :year, presence: true
+  validates :academic_year, presence: true
 
   private
 
