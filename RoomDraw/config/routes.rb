@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get '/users_login/:id', to: 'users#show', as: 'user'
 
+  root 'session#new'
   resources :users
   resources :search
   resources :groups
