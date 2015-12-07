@@ -1,5 +1,4 @@
 class Occupy < ActiveRecord::Base
-
   # define primary key
   self.primary_key = [:student_id, :dorm_name, :room_num]
 

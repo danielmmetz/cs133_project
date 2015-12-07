@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :queue
   resources :maps
+  resources :occupy
 
   # get 'session/new'
 
