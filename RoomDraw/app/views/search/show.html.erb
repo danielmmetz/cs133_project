@@ -15,7 +15,10 @@
     <th> Select Group </th>
   </tr>
   <% groups = DrawGroup.where student_id: current_user.student_id %>
-  <% (results params[:query]).each do |r| -%>
+  <% collections = (results params[:query]).paginate page: params[:page], per_page: 30 %>
+  <% collections.each do |r| -%>
     <%= render partial: "result", locals: { result: r, groups: groups } %>
   <% end -%>
 </table>
+
+<%= will_paginate collections %>
