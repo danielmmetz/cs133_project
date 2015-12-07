@@ -1,4 +1,6 @@
 <div class="center">
   <h1 class="center">User Login Success!</h1>
   <p class="center">User <%= current_user.student_id %> has been successfully logged in</p>
+  <% room = student_room(params[:id]) %>
+  <h3><%= if room.present? then "Your room is #{room.dorm_name}, #{room.room_num}" else "You have not yet drawn a room" end %></h3>
 </div>
