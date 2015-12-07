@@ -12,7 +12,6 @@ class DrawGroupCreationService
   ## returns false if the creation of the draw group fails
   def call
     rollback and return unless create_draw_group
-    puts @draw_group
     create_members
     calibrate_draw_group
   end
