@@ -1,0 +1,5 @@
+#!/bin/bash
+
+git subtree push --prefix RoomDraw heroku master
+heroku pg:reset DATABASE_URL
+heroku run rake db:migrate db:seed

@@ -82,8 +82,9 @@ ActiveRecord::Schema.define(version: 20151030232612) do
     t.string   "name",       limit: 255
     t.integer  "draw_num",   limit: 4
     t.integer  "grad_year",  limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "is_absent",              default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   add_index "students", ["draw_num"], name: "index_students_on_draw_num", unique: true, using: :btree

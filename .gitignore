@@ -141,5 +141,3 @@ sympy-plots-for-*.tex/
 
 # Don't include test files.
 RoomDraw/test/*
-RoomDraw/Gemlock.file
-RoomDraw/test/*
