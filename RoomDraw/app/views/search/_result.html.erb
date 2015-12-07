@@ -1,14 +1,13 @@
 <tr>
-  <td> <%= result.collection_id %> </td>
-  <td> <%= result.dorm_name %> </td>
-  <td> <%= result.room_num %> </td>
-  <td> <%= result.capacity %> </td>
+  <td> <%= result[:id] %> </td>
+  <td> <%= result[:dorm_name] %> </td>
+  <td> <%= result[:room_nums] %> </td>
+  <td> <%= result[:room_capacities] %> </td>
   <td>
     <%= form_for(:request) do |f| %>
       <%= f.collection_select :group_id, groups, :id, :id, include_blank: true %>
-      <%= f.hidden_field :collection_id, value: result.collection_id %>
+      <%= f.hidden_field :collection_id, value: result[:id] %>
       <%= f.submit "Enqueue", class: "btn btn-sm btn-primary offset" %>
     <% end %>
   </td>
 </tr>
-

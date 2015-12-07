@@ -1,4 +1,5 @@
 <%= form_for :query do |f| -%>
-    <%= f.collection_select :dorm_name, Room.order(:dorm_name).uniq, :dorm_name, :dorm_name, include_blank: true %>
+    Dorm Name: <%= f.collection_select :dorm_name, Room.select("distinct(dorm_name)").order(:dorm_name), :dorm_name, :dorm_name, include_blank: true %>
+    Total Capacity: <%= f.select :capacity, [1, 2, 3, 4, 5, 6], include_blank: true %>
     <%= f.submit "submit", {class: "btn btn-sm btn-default add-button"} %>
 <% end -%>
