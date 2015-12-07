@@ -11,7 +11,7 @@ module SearchHelper
       valid = true
       if conds.present?
         conds.each do |cond, value|
-          valid &= collection[cond.to_sym] == value if value.present?
+          valid &= collection[cond.to_sym].to_s == value if value.present?
         end
       end
       # add the collection if it does
