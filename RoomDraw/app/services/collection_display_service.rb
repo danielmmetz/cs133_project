@@ -3,12 +3,12 @@ class CollectionDisplayService
   def initialize
   end
 
-  def retrieve(rooms, col_id)
+  def retrieve(rooms)
     get_capacities rooms
     get_nums rooms
 
     return {
-      id: col_id,
+      id: rooms.first.collection_id,
       rooms: rooms,
       capacity: (total_capacity @caps),
       dorm_name: rooms.first[:dorm_name],
