@@ -13,8 +13,8 @@ class CollectionDisplayService
       capacity: (total_capacity @caps),
       dorm_name: rooms.first[:dorm_name],
       num_rooms: rooms.length,
-      room_nums: @nums.sort,
-      room_capacities: @caps.sort
+      room_nums: @nums,
+      room_capacities: @caps
     }
   end
 
