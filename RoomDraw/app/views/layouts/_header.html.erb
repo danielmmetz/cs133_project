@@ -1,6 +1,12 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "RoomDraw", "/", id: "logo" %>
+    <% if current_user.present? %>
+      <% std = Student.find_by id: current_user.student_id %>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="title"><%= "#{current_user.student_id}" %></li>
+        <li class="title"><%= "##{std[:draw_num] - 10000}" %></li>
+      </ul>
+    <% end %> 
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", "/users_login/#{params[:id]}" %></li>

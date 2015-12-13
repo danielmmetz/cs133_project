@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   get '/users_login/:id', to: 'users#show', as: 'user'
 
+  root 'session#new'
+  post   '/' => 'session#create'
+  delete '/' => 'session#destroy' # not explicitly necessary, but just in case
+
   resources :users
   resources :search
   resources :groups

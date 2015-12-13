@@ -1,5 +1,8 @@
 class StudentCreationService
-  def initialize(params)
+  def initialize
+  end
+
+  def create(params)
     @id = params[:id]
     @name = params[:name]
     @draw_num = params[:draw_num] + 10000
