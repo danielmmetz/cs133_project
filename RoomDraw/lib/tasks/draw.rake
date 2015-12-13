@@ -4,7 +4,9 @@ namespace :draw do
     draw_order = Request.order :rank_absolute
     draw_order.each do |r|
       break if all_drawn? args[:year]
-      draw_room r, args[:year]
+      unless any_has_room? r, args[:year]
+        draw_room r, args[:year]
+      end
     end
   end
 end
@@ -27,4 +29,15 @@ def draw_room(request, year)
       in_spring?: true
     )
   end
+end
+
+def any_has_room?(request, year)
+  # identify if any member already has a room assignment
+  members = Member.where draw_group_id: request.draw_group_id
+  members.each do |mem|
+    if (Occupy.where student_id: mem.student_id, academic_year: year).count > 0
+      return true
+    end
+  end
+  return false
 end

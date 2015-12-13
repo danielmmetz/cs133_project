@@ -3,5 +3,4 @@ class Room < ActiveRecord::Base
   belongs_to :collection
   has_many :occupy
   has_many :students, through: :occupy
-
 end
