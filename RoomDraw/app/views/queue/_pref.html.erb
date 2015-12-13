@@ -1,4 +1,4 @@
-<% collection = CollectionDisplayService.new.retrieve request.collection_id %>
+<% collection = CollectionDisplayService.new.retrieve Collection.find(request.collection_id).rooms %>
 
 <tr>
   <td> <%= link_to "X", queue_path(req_id: request.id), :method =>
