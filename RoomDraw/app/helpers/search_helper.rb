@@ -6,8 +6,8 @@ module SearchHelper
     generator = CollectionDisplayService.new
 
     # for each collection, check if it satisfies all present conditions
-    Collection.all.each do |col|
-      collection = generator.retrieve col.id
+    Collection.includes(:rooms).find_each do |col|
+      collection = generator.retrieve col.rooms
       valid = true
       if conds.present?
         conds.each do |cond, value|

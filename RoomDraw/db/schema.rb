@@ -13,87 +13,81 @@
 
 ActiveRecord::Schema.define(version: 20151030232612) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "collections", force: :cascade do |t|
-    t.integer  "suite_num",  limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "suite_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "draw_groups", force: :cascade do |t|
-    t.integer  "student_id", limit: 4
-    t.decimal  "draw_num",             precision: 10, scale: 5
+    t.integer  "student_id"
+    t.decimal  "draw_num",   precision: 10, scale: 5
     t.boolean  "for_suite"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
-  add_index "draw_groups", ["student_id"], name: "rep_id", using: :btree
-
   create_table "members", force: :cascade do |t|
-    t.integer  "draw_group_id", limit: 4
-    t.integer  "student_id",    limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "draw_group_id"
+    t.integer  "student_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "members", ["draw_group_id", "student_id"], name: "index_members_on_draw_group_id_and_student_id", unique: true, using: :btree
-  add_index "members", ["student_id"], name: "student_id", using: :btree
 
   create_table "occupies", force: :cascade do |t|
-    t.integer  "student_id",    limit: 4
-    t.integer  "room_id",       limit: 4
-    t.string   "dorm_name",     limit: 255
-    t.string   "room_num",      limit: 255
-    t.integer  "academic_year", limit: 4
+    t.integer  "student_id"
+    t.integer  "room_id"
+    t.string   "dorm_name"
+    t.string   "room_num"
+    t.integer  "academic_year"
     t.boolean  "in_fall?"
     t.boolean  "in_spring?"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
-
-  add_index "occupies", ["room_id"], name: "fk_rails_95d84e3073", using: :btree
-  add_index "occupies", ["student_id"], name: "fk_rails_4a9d76a866", using: :btree
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "draw_group_id", limit: 4
-    t.integer  "collection_id", limit: 4
-    t.decimal  "rank_absolute",           precision: 10
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "draw_group_id"
+    t.integer  "collection_id"
+    t.decimal  "rank_absolute"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "requests", ["collection_id"], name: "fk_rails_7d23987a4b", using: :btree
-  add_index "requests", ["draw_group_id"], name: "fk_rails_6a394ae907", using: :btree
   add_index "requests", ["rank_absolute"], name: "index_requests_on_rank_absolute", unique: true, using: :btree
 
   create_table "rooms", force: :cascade do |t|
-    t.string   "dorm_name",     limit: 255
-    t.string   "room_num",      limit: 255
-    t.integer  "capacity",      limit: 4
-    t.integer  "collection_id", limit: 4,   null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "dorm_name"
+    t.string   "room_num"
+    t.integer  "capacity"
+    t.integer  "collection_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "rooms", ["collection_id"], name: "fk_rails_c704d37356", using: :btree
   add_index "rooms", ["dorm_name", "room_num"], name: "index_rooms_on_dorm_name_and_room_num", unique: true, using: :btree
 
   create_table "students", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "draw_num",   limit: 4
-    t.integer  "grad_year",  limit: 4
-    t.boolean  "is_absent",              default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "name"
+    t.integer  "draw_num"
+    t.integer  "grad_year"
+    t.boolean  "is_absent",  default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "students", ["draw_num"], name: "index_students_on_draw_num", unique: true, using: :btree
 
   create_table "users", id: false, force: :cascade do |t|
-    t.string   "student_id",      limit: 255, null: false
-    t.string   "password_digest", limit: 255, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "student_id",      null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "users", ["student_id"], name: "index_users_on_student_id", unique: true, using: :btree
