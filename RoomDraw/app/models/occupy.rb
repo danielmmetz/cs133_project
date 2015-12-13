@@ -1,4 +1,6 @@
 class Occupy < ActiveRecord::Base
+  belongs_to :room
+  belongs_to :student
 
   # define primary key
   self.primary_key = [:student_id, :academic_year, :in_fall?, :in_spring?]

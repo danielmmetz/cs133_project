@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 20151030232612) do
   create_table "occupies", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "room_id"
-    t.string   "dorm_name"
-    t.string   "room_num"
     t.integer  "academic_year"
     t.boolean  "in_fall?"
     t.boolean  "in_spring?"

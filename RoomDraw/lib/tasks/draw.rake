@@ -24,8 +24,6 @@ def draw_room(request, year)
     Occupy.create(
       student_id: members[i].student_id,
       room_id: r.id,
-      dorm_name: r.dorm_name,
-      room_num: r.room_num,
       academic_year: year,
       in_fall?: true,
       in_spring?: true
