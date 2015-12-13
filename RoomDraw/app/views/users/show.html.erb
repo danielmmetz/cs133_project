@@ -1,5 +1,17 @@
 <div class="center">
-  <h1 class="center">Welcome <%= (Student.find current_user.student_id).name %></h1>
+  <h1 class="center">Welcome <%= curr_name %></h1>
   <% room = student_room(current_user.student_id) %>
-  <h3><%= if room.present? then "Your room is #{room.dorm_name}: ##{room.room_num}" else "You have not yet drawn a room" end %></h3>
+  <% if room.present? %>
+
+    <h3>
+      Your room is <%=room.dorm_name%>: #<%=room.room_num%>
+    </h3>
+    <h4>
+      <%= groupmates current_user.student_id %>
+    </h4>
+  <% else %>
+    <h3>
+      You have not yet drawn a room
+    </h3>
+  <% end %>
 </div>
