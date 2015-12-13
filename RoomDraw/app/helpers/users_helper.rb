@@ -9,7 +9,7 @@ module UsersHelper
     prettify ActiveRecord::Base.connection.execute group_query(sid)
   end
 
-  def prettify (pg_names)
+  def prettify(pg_names)
     if pg_names.count < 1
       "You are in a single"
     else
