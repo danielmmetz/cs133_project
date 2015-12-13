@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20151030232612) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "occupies", ["student_id", "academic_year", "in_fall?", "in_spring?"], name: "index_occupies_on_student_year_fa_sp", unique: true, using: :btree
+
   create_table "requests", force: :cascade do |t|
     t.integer  "draw_group_id"
     t.integer  "collection_id"
