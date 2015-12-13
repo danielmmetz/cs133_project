@@ -12,10 +12,8 @@ module UsersHelper
   def prettify (pg_names)
     if pg_names.count < 1
       "You are in a single"
-    elsif pg_names.count == 1
-      "Your suitemate is #{pg_names.values.join(", ")}!"
     else
-      "Your suitesmates are #{pg_names.values.join(", ")}!"
+      "You are living with #{pg_names.values.join(", ")}!"
     end
   end
 
