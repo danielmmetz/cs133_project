@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20151030232612) do
   add_index "members", ["draw_group_id", "student_id"], name: "index_members_on_draw_group_id_and_student_id", unique: true, using: :btree
 
   create_table "occupies", force: :cascade do |t|
-    t.integer  "student_id"
-    t.integer  "room_id"
+    t.integer  "draw_group_id"
+    t.integer  "collection_id"
     t.integer  "academic_year"
     t.boolean  "in_fall?"
     t.boolean  "in_spring?"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20151030232612) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "occupies", ["student_id", "academic_year", "in_fall?", "in_spring?"], name: "index_occupies_on_student_year_fa_sp", unique: true, using: :btree
+  add_index "occupies", ["draw_group_id", "academic_year", "in_fall?", "in_spring?"], name: "index_occupies_on_student_year_fa_sp", unique: true, using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.integer  "draw_group_id"
@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 20151030232612) do
   add_foreign_key "draw_groups", "students", name: "rep_id"
   add_foreign_key "members", "draw_groups", name: "group_id", on_delete: :cascade
   add_foreign_key "members", "students", name: "student_id", on_delete: :cascade
-  add_foreign_key "occupies", "rooms"
-  add_foreign_key "occupies", "students"
+  add_foreign_key "occupies", "collections"
+  add_foreign_key "occupies", "draw_groups"
   add_foreign_key "requests", "collections", on_delete: :cascade
   add_foreign_key "requests", "draw_groups", on_delete: :cascade
   add_foreign_key "rooms", "collections"

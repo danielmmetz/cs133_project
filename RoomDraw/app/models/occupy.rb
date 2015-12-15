@@ -1,9 +1,9 @@
 class Occupy < ActiveRecord::Base
-  belongs_to :room
-  belongs_to :student
+  belongs_to :draw_group
+  belongs_to :collection
 
   # define primary key
-  self.primary_key = [:student_id, :academic_year, :in_fall?, :in_spring?]
+  self.primary_key = [:draw_group_id, :academic_year, :in_fall?, :in_spring?]
 
   # define validations
   validate { fall_or_spring? }

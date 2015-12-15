@@ -13,6 +13,6 @@ class AddUniquenessConstraints < ActiveRecord::Migration
     add_index :rooms, [:dorm_name,:room_num], unique: true
 
     # make the (student_id, academic_year, in_fall?, in_spring?) a key to Occupy
-    add_index :occupies, [:student_id, :academic_year, :in_fall?, :in_spring?], unique: true, name: 'index_occupies_on_student_year_fa_sp'
+    add_index :occupies, [:draw_group_id, :academic_year, :in_fall?, :in_spring?], unique: true, name: 'index_occupies_on_student_year_fa_sp'
   end
 end
