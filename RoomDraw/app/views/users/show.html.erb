@@ -9,7 +9,10 @@
     </h3>
   <% else %>
     <h3>
-      You have not yet drawn a room.
+      You have not yet drawn a room. <br/> <br/>
+      Click <%= link_to "Groups", group_path({id: params[:id]}) %> to manage who want to live with! <br/><br/>
+      Click <%= link_to "Search", search_path({id: params[:id]}) %> to select where you'd like to live! <br/><br/>
+      Click <%= link_to "Queue", queue_path({id: params[:id]}) %> to view your preferences!
     </h3>
   <% end %>
 </div>

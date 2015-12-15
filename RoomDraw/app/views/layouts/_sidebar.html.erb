@@ -1,9 +1,8 @@
 <div class="col-md-2" id="leftCol">
   <div class="well">
     <ul class="nav nav-stacked" id="sidebar">
-      <li><%= link_to "Maps", maps_path({id: params[:id]}) %></li>
-      <li><%= link_to "Search", search_path({id: params[:id]}) %></li>
       <li><%= link_to "Groups", group_path({id: params[:id]}) %></li>
+      <li><%= link_to "Search", search_path({id: params[:id]}) %></li>
       <li><%= link_to "Queue", queue_path({id: params[:id]}) %></li>
     </ul>
   </div>

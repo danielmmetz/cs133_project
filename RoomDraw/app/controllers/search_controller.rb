@@ -9,7 +9,12 @@ class SearchController < ApplicationController
     if params.has_key? :request
         request = params[:request]
         rcs = RequestCreationService.new
-        rcs.create request[:group_id], request[:collection_id]
+        req = rcs.create request[:group_id], request[:collection_id]
+        if req.present?
+          flash[:notice] = "You have added collection ##{request[:collection_id]} for group ##{request[:group_id]} to your queue."
+        else
+          flash[:error] = "Failed to add collection ##{request[:collection_id]} for group ##{request[:group_id]} to your queue."
+        end
     end
     render :show
   end
