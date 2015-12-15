@@ -1,17 +1,15 @@
 <div class="center">
   <h1 class="center">Welcome <%= curr_name %></h1>
-  <% room = student_room(current_user.student_id) %>
-  <% if room.present? %>
-
+  <% occ = occupy_query current_user.student_id %>
+  <% if occ.present? %>
     <h3>
-      Your room is <%=room.dorm_name%>: #<%=room.room_num%>
+      You are living in <%= dorm_name occ %>: Room #s <%= room_nums occ %> <br/><br/>
+      with <br/><br/>
+      <%= group_names occ %>
     </h3>
-    <h4>
-      <%= groupmates current_user.student_id %>
-    </h4>
   <% else %>
     <h3>
-      You have not yet drawn a room
+      You have not yet drawn a room.
     </h3>
   <% end %>
 </div>
