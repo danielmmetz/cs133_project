@@ -6,65 +6,69 @@ relationships.
 \begin{description}
   \item Student(
         \ul{\emph{sid}: \texttt{integer}},
-        \emph{drawNum}: \texttt{integer},
+        \emph{password}: \texttt{string},
+        \emph{draw\_num}: \texttt{integer},
         \emph{name}: \texttt{string},
-        \emph{gradYear}: \texttt{integer})
+        \emph{grad\_year}: \texttt{integer})
 
   \item Member(
-        \ul{\emph{sid}: \texttt{integer},
-        \emph{gid}: \texttt{integer}})
+        \ul{\emph{student\_id}: \texttt{integer},
+        \emph{draw\_group\_id}: \texttt{integer}})
 
   \item DrawGroup(
-        \ul{\emph{gid}: \texttt{integer}},
-        \emph{drawNum}: \texttt{integer},
-        \emph{repid}: \texttt{integer},
-        \emph{forSuite}: \texttt{boolean})
+        \ul{\emph{draw\_group\_id}: \texttt{integer}},
+        \emph{draw\_num}: \texttt{integer},
+        \emph{student\_id}: \texttt{integer},
+        \emph{for\_suite}: \texttt{boolean})
 \end{description}
 
 The above schema mostly sticks to the obvious translation.  However, we have key
 and total participation constraints on the \emph{Representative}
 relationship between \emph{Student} and \emph{Group}. Since every entity in
 \emph {Group} must participate in the \emph{Representative} relationship exactly
-once, \emph{repid} is a foreign key to the \emph{Student} table in each
+once, \emph{student\_id} is a foreign key to the \emph{Student} table in each
 \emph{Group} tuple. The above schema is in Third Normal Form.
 
 Now, consider a parallel set of entity sets \emph{Room} and \emph{Collection}.
 
 \begin{description}
   \item Room(
-        \ul{\emph{dormName}: \texttt{string},
-        \emph{roomNumber}: \texttt{string}},
+        \ul{\emph{dorm\_name}: \texttt{string},
+        \emph{room\_num}: \texttt{string}},
         \emph{capacity}: \texttt{integer},
-        \emph{cid}: \texttt{integer})
+        \emph{collection\_id}: \texttt{integer})
 
   \item Collection(
-        \ul{\emph{cid}: \texttt{integer}},
-        \emph{suiteNum}: \texttt{integer})
+        \ul{\emph{collection\_id}: \texttt{integer}},
+        \emph{suite\_num}: \texttt{integer})
 \end{description}
 
 Here there are total participation and key constraints on \emph{Room} with
 respect to the \emph{In\_A} relationship.  Since each and every entity in
-\emph{Room} is in \emph{Collection} exactly once, the \emph{cid}, or collection
-ID, can be an attribute in \emph{Room}. It is a foreign key to the
+\emph{Room} is in \emph{Collection} exactly once, the \emph{collection\_id} can 
+be an attribute in \emph{Room}. It is a foreign key to the
 \emph{Collection} table. Here, Third Normal Form is maintained.
 
 Now consider the tables representing the \emph{Request} and \emph{Occupy}
-relationships. Since there are no constraints in the ER Diagram, these are
-straightforward translations.
+relationships. The former is a straightforward translation. However, the latter is
+not as intuitive. We have key constraints on the attributes listed below to ensure
+that a \emph{DrawGroup} can only occupy at most a single collection per semester
+in an academic year. We have also implemented business logic checks to manage
+the different condition combination cases.
 
 \begin{description}
   \item Request(
-        \ul{\emph{gid}: \texttt{integer},
-        \emph{cid}: \texttt{integer}},
-        \emph{rankAbsolute}: \texttt{real})
+        \ul{\emph{draw\_group\_id}: \texttt{integer},
+        \emph{collection\_id}: \texttt{integer}},
+        \emph{absolute\_rank}: \texttt{real})
 
   \item Occupy(
-        \ul{\emph{sid}: \texttt{integer},
-        \emph{dormName}: string,
-        \emph{roomNum}: \texttt{string}},
-        \emph{academicYear}: \texttt{integer},
-        \emph{inFall}: \texttt{boolean},
-        \emph{inSpring}: \texttt{boolean})
+        \ul{\emph{draw\_group\_id}: \texttt{integer},
+        \emph{academic\_year}: \texttt{integer},
+        \emph{in\_fall?}: \texttt{boolean},
+        \emph{in\_spring?}: \texttt{boolean}},
+        \emph{collection\_id}: \texttt{integer})   
+     
 \end{description}
 
 
