@@ -1,0 +1,138 @@
+This section details some of the difficulties we've encountered while working on
+this project. Some difficulties have been conquered, others have been relegated
+to future extensions we'd like to later support.
+
+\subsection{Challenges Conquered}
+
+For the most part, our project progressed smoothly. We spent most of our time
+not attempting to fix bugs but rather learning Rails and figuring out the best
+means through which to implement our desired feature set. Below you'll find some
+of the challenges we're particularly proud to have conquered.
+
+\begin{outline}
+\1 Learning Ruby, Rails, Git, and their best practices.
+  \2 includes idiomatic ruby, git branching, and merges by pull request
+\1 Discovering (often in advance) many edge cases. This includes ensuring
+  various invariants like:
+  \2 deleting associated requests when a draw group's size changes
+  \2 ensuring a student cannot belong to too many groups, including when they
+  are added by another student to an existing group
+  \2 groups may only add to their queue collections of matching capacity
+\1 Maintaining what we believe to be an intuitive and relatively simple model
+  for what we slowly realized to be a surprisingly complicated system and
+  process.
+\1 Ensuring reasonable load times on all pages.
+  \2 Of particular note is the search page, which efficiently displays 700+
+  collections for various queries. The initial implementation resulted in a 24
+  second load time for the page. The current implementation reduces this load
+  time below 1 second.
+\1 One-upping the current room draw process to incorporate automation.
+  \2 This is achieved by use of the preference queue and the \texttt{draw} rake
+  task.
+\end{outline}
+
+\subsection{Challenges To Conquer}
+
+While there's much we're proud to have achieved, there's still much we'd like to
+incorporate to extend our project. Some of these extensions are listed out
+below:
+
+\begin{outline}
+\1 General Extensions:
+  \2 Better handle students abroad and/or on leave.
+    \3 Currently we handle this by simply assuming that such students will have
+    no collections in their queue. We have some initial hooks to handle
+    this---on each student we have a boolean \texttt{is\_absent} that aims
+    to indicate such information. We would need only to prevent absent students
+    from being a part of any draw group.
+  \2 Display and retreive historical data.
+    \3 Allow students to see the historical group draw numbers for each
+    collection. This allows students to gauge their likelihood to draw into a
+    collection in question and mirrors a feature of the current real-life
+    system.
+  \2 Generate draw numbers.
+    \3 Given historical data (above), we can generate the draw numbers for
+    students based on their past tiers placements.
+  \2 Prevent suite-size group creations and modificiations at some desired time.
+    \3 If we wish to more closely resemble the current Room Draw system, we can
+    incorporate this. This can be handled by simply checking against a variable
+    to indicate when this condition is to be considered, and checking against
+    the current group size before adding another member.
+  \2 Hide draw numbers at some desired time.
+    \3 Similar to the above.
+  \2 Better session tracking (BUGFIX)
+    \3 Currently, if a logged-in user manually routes to the \texttt{/login}
+    page, the site routing breaks. This should be fixable by rerouting the
+    \texttt{/login} page.
+  \2 Modify the rooms and collections to match the current set of rooms and
+  collections set by Pomona College.
+  \2 Room assignment.
+    \3 After a group has successfully drawn into a collection, allow group
+    members to assign themselves to rooms.
+
+\1 Admin Pages
+  \2 Create a set of pages to enable admin control over:
+    \3 Collections and their associated Rooms
+    \3 Student accounts
+    \3 The Occupy relation (e.g. room-change requests)
+    \3 A Student-to-Room Relation (when it exists)
+
+\1 AutoDraw:
+  \2 Map draw numbers to draw times.
+    \3 This would allow it so that a student can know when to check their
+    assignment status.
+    \3 It would also allow students to know when to check-in, allowing students
+    a time to see if they've been assigned a room and to know when to add more
+    collections to their queue if necessary. Currently a student whose draw
+    groups have only unfulfillable requests (all have been taken by earlier draw
+    numbers) is simply passed over. This is not ideal behavior. Ideally, this
+    would handle a bit more like course registration.
+  \2 Tie-breaking (BUGFIX)
+    \3 Consider two draw groups with equal draw number averages, but with member
+    draw numbers respectively 1, 3, 5 and 2, 3, 4. Currently if either of these
+    groups makes a request, there exists some sort of a ``race condition'' in
+    that the request priority of these two groups is interleaved in order of
+    their preference creation. In theory, to better model the current process,
+    there should exist a tie-breaking process to assign one group higher
+    priority over the other. This has been relegated as a low-priority fix given
+    the low likelihood of multiple draw groups with identical averages.
+
+\1 UI:
+  \2 Better match original wireframe mockups.
+    \3 We believe this to be a nicer aesthetic in at least a few regards.
+  \2 Better format search results.
+    \3 This might include for instance, not listing the rooms of a collection as
+    \sbr{a, b, c, d} but instead as \(a, b, c, d\).
+
+\1 Groups:
+  \2 Allow deletion of members from a group.
+    \3 This may also permit an individual to remove themselves from a group,
+    with an option to disband the entire group.
+  \2 Require consent to be added to a group.
+    \3 This might involve an invitation to invite a group with the option to
+    accept or reject the invitation.
+  \2 Remove the idea of a group representative.
+    \3 This may simply make the various interfaces more intuitive.
+    \3 This may also make the system less troublesome as the representative
+    cannot currently be elected but is instead automatically assigned.
+  \2 Do not display the \texttt{add} field and button for a group at max
+  capacity.
+
+\1 Search:
+  \2 Allow an enqueue operation to add to the top of the queue as well as the
+  bottom of the queue.
+  \2 Extend the search options.
+    \3 by room type (function of capacity and number of rooms) (e.g. 2RD vs 1RD)
+    \3 by floor
+  \2 Lazy loading pagination.
+  \2 Coloring of the enqueue buttom.
+    \3 This can include indications that a search result is already present in
+    your queue
+
+\1 Queue:
+  \2 Up/Down arrows on requests.
+    \3 This would allow for a simple re-ordering of requests.
+  \2 Draggable requests.
+    \3 This would allow for a nicer interface interaction for request
+    re-ordering.
+\end{outline}
