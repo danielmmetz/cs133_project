@@ -1,0 +1,75 @@
+The result of the translation of the ER diagram to the schema is presented in
+the next section, as well as the explanation of any non-obvious choices. First,
+consider the \emph{Student} and \emph{DrawGroup} entity sets and their mutual
+relationships.
+
+\begin{description}
+  \item Student(
+        \ul{\emph{student\_id}: \texttt{integer}},
+        \emph{password}: \texttt{string},
+        \emph{draw\_num}: \texttt{integer},
+        \emph{name}: \texttt{string},
+        \emph{grad\_year}: \texttt{integer})
+
+  \item Member(
+        \ul{\emph{student\_id}: \texttt{integer},
+        \emph{draw\_group\_id}: \texttt{integer}})
+
+  \item DrawGroup(
+        \ul{\emph{draw\_group\_id}: \texttt{integer}},
+        \emph{draw\_num}: \texttt{integer},
+        \emph{student\_id}: \texttt{integer},
+        \emph{for\_suite}: \texttt{boolean})
+\end{description}
+
+The above schema mostly sticks to the obvious translation.  However, we have key
+and total participation constraints on the \emph{Representative} relationship
+with \emph{DrawGroup}. Since every entity in \emph{DrawGroup} must participate
+in the \emph{Representative} relationship exactly once, \emph{student\_id} is a
+foreign key to the \emph{Student} table in each \emph{DrawGroup} tuple. The
+above schema is in Third Normal Form. \\
+
+Now, consider a parallel set of entity sets \emph{Room} and \emph{Collection}.
+
+\begin{description}
+  \item Room(
+        \ul{\emph{dorm\_name}: \texttt{string},
+        \emph{room\_num}: \texttt{string}},
+        \emph{capacity}: \texttt{integer},
+        \emph{collection\_id}: \texttt{integer})
+
+  \item Collection(
+        \ul{\emph{collection\_id}: \texttt{integer}},
+        \emph{suite\_num}: \texttt{integer})
+\end{description}
+
+Here there are total participation and key constraints on \emph{Room} with
+respect to the \emph{Belongs\_To} relationship.  Since each and every entity in
+\emph{Room} is in \emph{Collection} exactly once, the \emph{collection\_id} can
+be an attribute in \emph{Room}. It is a foreign key to the
+\emph{Collection} table. Here, Third Normal Form is maintained.
+
+Consider the tables representing the \emph{Request} and \emph{Occupy}
+relationships. The former is a straightforward translation. However, the latter
+is not as intuitive. We have key constraints on the attributes listed below to
+ensure that a \emph{DrawGroup} can only occupy at most a single collection per
+semester in an academic year. We have also implemented business logic checks to
+manage the different condition combination cases.
+
+\begin{description}
+  \item Request(
+        \ul{\emph{draw\_group\_id}: \texttt{integer},
+        \emph{collection\_id}: \texttt{integer}},
+        \emph{absolute\_rank}: \texttt{real})
+
+  \item Occupy(
+        \ul{\emph{draw\_group\_id}: \texttt{integer},
+        \emph{academic\_year}: \texttt{integer},
+        \emph{in\_fall?}: \texttt{boolean},
+        \emph{in\_spring?}: \texttt{boolean}},
+        \emph{collection\_id}: \texttt{integer})
+
+\end{description}
+
+
+

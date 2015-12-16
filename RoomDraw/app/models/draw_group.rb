@@ -2,6 +2,7 @@ class DrawGroup < ActiveRecord::Base
   # key constraints
   has_many :members, foreign_key: [:draw_group_id, :student_id], dependent: :delete_all
   has_many :requests
+  has_many :draw_groups, through: :occupy
   belongs_to :student
 
   self.primary_key = :id

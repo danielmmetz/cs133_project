@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row">
 
-      <% if @current_user and not student_room @current_user.student_id -%>
+      <% if @current_user and not (occupy_query @current_user.student_id).present? -%>
         <%= render "layouts/sidebar" %>
         <div class="col-md-10">
           <%= yield %>
