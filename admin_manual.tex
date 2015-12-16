@@ -1,3 +1,14 @@
-The automated RoomDraw task assigns draw groups to collections in order of absolute draw number ranks. At the end of the task, it is possible that a user will not have been drawn into a room. Such users must then update their preferences and the task must be rerun for these individuals. This rake task must be run on the production database hosted by Heroku by calling \texttt{heroku run rake draw:auto[year]} where \texttt{year} is the fall academic year for which users are drawing for.
+The automated room draw task (AutoDraw) assigns draw groups to collections in
+order of absolute ranks. At the end of the task, it is possible that a user will
+not have been drawn into a room. Such users must then update their preferences
+and the task must be rerun for these individuals. This \texttt{rake} task must
+be run on the production database, hosted by Heroku, by calling \texttt{heroku
+run rake draw:auto[year]} where \texttt{year} is the fall academic year for
+which users are drawing.
 
-In order to perform the task, admin privileges on the Heroku app are required. The admin should install Heroku toolbelt (https://toolbelt.heroku.com) and navigate to a local repository of the project which can be found at \url{http://github.com/danielmmetz/cs133_project}. Here, use the command \texttt{heroku login} and follow the output instructions to finish set up. Once this is completed, the aforementioned rake task may be run.
+In order to perform the task, admin privileges on the Heroku app are required.
+The admin should install Heroku toolbelt (\url{https://toolbelt.heroku.com}) and
+navigate to a local repository of the project which can be found at
+\url{http://github.com/danielmmetz/cs133_project}. Here, use the command
+\texttt{heroku login} and follow the output instructions to finish set up. Once
+this is completed, the aforementioned \texttt{rake} task may be run.

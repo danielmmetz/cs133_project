@@ -3,37 +3,39 @@ the functionality of the Room Draw application.
 
 \begin{itemize}
 \item A student who is a representative of a group makes the request on behalf
-of the group. The representative of a group is by default the student in the
-group with the lowest \emph{draw\_num}.
+of the group. The representative of a group is the student in the group with the
+lowest \emph{draw\_num}.
 
-\item On creation of a group, the \(G.draw\_num\) is calculated. The manner by
-which it is calculated depends on the type of group and is described as follows:
+\item On creation of a group \(G\), the \(G.draw\_num\) is calculated. The
+manner by which it is calculated depends on the type of group and is described
+as follows:
 
 \[
     G.drawNum =
         \begin{cases}
-        \text{mean} \del{S_1, \ldots, S_r} & \quad \mbox{if suite} \\
+        \text{mean} \del{S_1, \ldots, S_r} & \quad \mbox{if suite \(3 \leq r \leq 6\)} \\
         \min \del{S_1, \ldots, S_r} & \quad \mbox{otherwise}
         \end{cases}
 \]
 
 \item For a tuple \(o \in Occupy\), \(o.in\_fall?\) is true or \(o.in\_spring?\) is true.
 
-\item The number of students in any group must be between 1 and 6 (inclusive).
-A group is a suite if it contains between 3 and 6 members. A student can be in up to 50
-draw groups.
+\item The number of students in any group must be between 1 and 6 (inclusive). A
+group is a suite if it contains between 3 and 6 members. A student can be in up
+to 50 draw groups.
 
-\item The attribute \(absolute\_rank\) in the \(Request\) relation is a \texttt{real} to
-facilitate the ordering of preferences.  We set the maximum number of preferences to
-be \num{10000}, then the five numbers after the decimal specify the student's ordered
-preference. In other words, if a representative student \(s\) specifies an
-ordering \(1,2,\ldots, n\), then the preferences \(r_1,r_2, \ldots, r_n \in
-Request\) are created such that \[r_i.absolute\_rank = s.draw\_num + \sfrac{i}{10000.0}\]
+\item The attribute \(absolute\_rank\) in the \(Request\) relation is a
+\texttt{real} to facilitate the ordering of preferences.  We set the maximum
+number of preferences to be \num{10000}, then the numbers after the decimal
+specify the group's ordered preference. In other words, if a representative
+student \(s\) specifies an ordering \(1,2,\ldots, n\), then the preferences
+\(r_1,r_2, \ldots, r_n \in Request\) are created such that \[r_i.absolute\_rank
+= s.draw\_num + \sfrac{i}{10000.0}\]
 
 \item The minimum \(draw\_num\) for students is \num{10000}. This allows for
-friendship suites to be given priority. On committing the requests \(r_1\ldots
-r_n\), if \(r_i.cid\) corresponds to a friendship suite, \(r_i.draw\_num\) is
-automatically reduced by this minimum \(draw\_num\), \num{10000}. 
-This priorities friendship groups.
+friendship suites to be given priority. On committing the requests \(r_1,
+\ldots, r_n\), if \(r_i.collection\_id\) corresponds to a friendship suite,
+\(r_i.draw\_num\) is automatically reduced by this minimum \(draw\_num\),
+\num{10000}. This prioritizes friendship groups.
 \end{itemize}
 
